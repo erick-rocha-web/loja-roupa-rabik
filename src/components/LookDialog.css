@@ -1,0 +1,106 @@
+.look-dialog {
+  position: relative;
+  display: grid;
+  min-height: 100%;
+}
+
+.look-dialog__media {
+  position: relative;
+  background: var(--color-paper-2);
+  height: min(56dvh, 520px);
+  overflow: hidden;
+}
+
+.look-dialog__shape {
+  position: absolute;
+  inset: 14% 10% 0 28%;
+  background: var(--family);
+  clip-path: polygon(34% 0, 100% 0, 66% 100%, 0 100%);
+}
+
+.look-dialog__media img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+
+.look-dialog__body {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 20px 20px 24px;
+}
+
+.look-dialog__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.look-dialog__top .eyebrow {
+  color: var(--color-orange-text);
+}
+
+.look-dialog__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 60px);
+  line-height: 0.92;
+  text-transform: uppercase;
+}
+
+.look-dialog__tags {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.look-dialog__text {
+  max-width: 32em;
+}
+
+.look-dialog__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.look-dialog__note {
+  font-size: 13px;
+  color: var(--color-muted);
+  border-top: 1px solid var(--color-line);
+  padding-top: 12px;
+}
+
+/* Celular: "Fechar" fica visível sobre a ilustração, sem precisar rolar o dialog. */
+@media (max-width: 859.98px) {
+  .look-dialog__top .modal__close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+  }
+}
+
+@media (min-width: 860px) {
+  .look-dialog {
+    grid-template-columns: 1fr 1.05fr;
+  }
+
+  .look-dialog__media {
+    height: auto;
+    min-height: min(640px, calc(100dvh - 32px));
+  }
+
+  .look-dialog__body {
+    padding: 24px 32px 32px;
+    align-content: space-between;
+  }
+
+  .look-dialog__top {
+    margin-bottom: 24px;
+  }
+}

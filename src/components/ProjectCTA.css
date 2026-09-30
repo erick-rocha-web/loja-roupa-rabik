@@ -1,0 +1,54 @@
+.cta {
+  position: relative;
+  padding-block: clamp(80px, 10vw, 140px);
+  background: var(--color-orange);
+  color: var(--color-ink);
+  overflow: hidden;
+}
+
+.cta__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 14px;
+  background: var(--color-ink);
+}
+
+.cta__inner {
+  display: grid;
+  gap: 20px;
+  justify-items: start;
+}
+
+.cta__title {
+  max-width: 13em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(44px, 6.4vw, 92px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.cta__text {
+  max-width: 36em;
+  font-size: clamp(17px, 1.3vw, 19px);
+}
+
+.cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.cta .btn:hover {
+  background: var(--color-paper);
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.cta__fine {
+  font-size: 14px;
+}

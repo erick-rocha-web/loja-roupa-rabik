@@ -1,0 +1,291 @@
+.composer {
+  padding-block: clamp(72px, 9vw, 128px);
+  background: var(--color-paper-2);
+  border-top: 1px solid var(--color-line);
+}
+
+.composer__layout {
+  display: grid;
+  grid-template-areas:
+    "head"
+    "board"
+    "controls";
+  gap: 28px;
+}
+
+.composer__head {
+  grid-area: head;
+  display: grid;
+  gap: 14px;
+}
+
+.composer__kicker {
+  color: var(--color-orange-text);
+}
+
+.composer__head h2:focus {
+  outline: none;
+}
+
+/* Moodboard */
+/* Altura explícita (não derivada da largura nem da coluna de controles). */
+.composer__board {
+  grid-area: board;
+  position: relative;
+  overflow: hidden;
+  height: clamp(300px, 80vw, 380px);
+  border: 1.5px solid var(--color-ink);
+  border-radius: var(--radius);
+  background: var(--tint);
+  transition: background-color 280ms var(--ease-out);
+}
+
+.composer__field {
+  position: absolute;
+  inset: 0 34% 0 0;
+  background: var(--accent);
+  clip-path: polygon(0 0, 62% 0, 100% 100%, 0 100%);
+  opacity: 0.9;
+}
+
+/* Camada com a cor anterior; o GSAP a retira por máscara (começa totalmente recolhida). */
+.composer__field-old {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0% 0% 0% 100%);
+}
+
+.composer__base {
+  position: absolute;
+  left: 3%;
+  top: 5%;
+  width: 58%;
+  height: 74%;
+}
+
+.composer__complement {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  height: 56%;
+  background: var(--color-ink);
+  clip-path: polygon(14% 0, 100% 0, 100% 100%, 0 100%);
+  overflow: hidden;
+}
+
+.composer__name {
+  overflow: clip;
+  position: absolute;
+  left: 5%;
+  bottom: 5%;
+  max-width: 40%;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(26px, 3.2vw, 46px);
+  line-height: 0.9;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.composer__name span {
+  display: inline-block;
+  background: var(--color-paper);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0 6px;
+}
+
+.xfade {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.xfade__layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.xfade--cover .xfade__layer {
+  object-fit: cover;
+  object-position: 50% 55%;
+}
+
+/* Controles */
+.composer__controls {
+  grid-area: controls;
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
+.composer__group {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.composer__group legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.composer__options {
+  display: grid;
+  gap: 8px;
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 64px;
+  padding: 4px 12px 4px 4px;
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-paper);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color var(--t-micro) var(--ease-out),
+    background-color var(--t-micro) var(--ease-out);
+}
+
+.option:hover {
+  border-color: var(--color-ink);
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.option img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: var(--color-paper-2);
+  border-radius: 2px;
+}
+
+.option--dark img {
+  object-fit: cover;
+  background: var(--color-ink);
+}
+
+.option:has(input:checked) {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.option:has(input:checked)::after {
+  content: "";
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  background: var(--color-orange);
+  clip-path: polygon(40% 0, 100% 0, 60% 100%, 0 100%);
+}
+
+.option:has(input:focus-visible) {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+.composer__result {
+  display: grid;
+  gap: 8px;
+  padding: 18px 0;
+  border-block: 1px solid var(--color-line);
+}
+
+.composer__result .eyebrow {
+  color: var(--color-muted);
+}
+
+.composer__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 2.6vw, 38px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.composer__summary {
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.composer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .composer__board {
+    height: 440px;
+  }
+}
+
+@media (min-width: 560px) {
+  .composer__options {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .composer__options--two {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .option {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6px 6px 10px;
+    min-height: 0;
+  }
+
+  .option img {
+    width: 100%;
+    height: 72px;
+  }
+
+  .option:has(input:checked)::after {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .composer__layout {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    grid-template-areas:
+      "board head"
+      "board controls";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(32px, 4vw, 64px);
+    row-gap: 28px;
+  }
+
+  /* Quadro com altura própria, fixo ao lado dos controles enquanto se escolhe. */
+  .composer__board {
+    align-self: start;
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    height: clamp(380px, 60vh, 520px);
+  }
+}

@@ -1,0 +1,104 @@
+.world {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(72px, 9vw, 128px);
+  background: var(--color-paper);
+  overflow: clip;
+}
+
+/* Tipografia de fundo, decorativa, só em contorno. */
+.world__word {
+  position: absolute;
+  z-index: -1;
+  top: clamp(40px, 6vw, 96px);
+  left: 30%;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(110px, 17vw, 280px);
+  line-height: 0.8;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-line);
+  pointer-events: none;
+  user-select: none;
+}
+
+.world__grid {
+  display: grid;
+  gap: 20px;
+}
+
+.world__copy {
+  display: grid;
+  gap: 14px;
+}
+
+.world__kicker {
+  color: var(--color-orange-text);
+}
+
+.world__wide,
+.world__crop {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-paper-2);
+}
+
+.world__wide {
+  aspect-ratio: 16 / 9;
+}
+
+.world__wide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 60% 60%;
+}
+
+/* Detalhe enquadrado: textura da pintura laranja, sem repetir a escadaria do painel amplo. */
+.world__crop {
+  display: none;
+}
+
+.world__crop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 64% 30%;
+  transform: scale(2.3);
+  transform-origin: 64% 30%;
+}
+
+@media (min-width: 1024px) {
+  .world__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: end;
+    gap: 24px;
+  }
+
+  .world__copy {
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    align-self: start;
+    padding-top: 12px;
+    border-top: 3px solid var(--color-ink);
+  }
+
+  .world__wide {
+    grid-column: 5 / span 8;
+    grid-row: 1 / span 2;
+  }
+
+  .world__crop {
+    display: block;
+    grid-column: 2 / span 3;
+    grid-row: 2;
+    aspect-ratio: 1;
+    border: 6px solid var(--color-paper);
+    outline: 1.5px solid var(--color-ink);
+    margin-right: -32%;
+    z-index: 1;
+  }
+}

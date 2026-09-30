@@ -1,0 +1,202 @@
+.detail {
+  position: relative;
+  padding-block: clamp(72px, 9vw, 120px);
+  background: var(--color-paper);
+  overflow: clip;
+}
+
+.detail__canvas {
+  display: grid;
+  gap: 18px;
+}
+
+.detail__copy {
+  order: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.detail__kicker {
+  color: var(--color-orange-text);
+}
+
+.detail__quote {
+  order: 1;
+  max-width: 18em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.3vw, 32px);
+  line-height: 1.08;
+  text-transform: uppercase;
+}
+
+.detail__frame {
+  order: 2;
+  position: relative;
+  margin: 0;
+}
+
+.detail__frame img {
+  width: 100%;
+  height: 100%;
+}
+
+.detail__jacket {
+  aspect-ratio: 1312 / 1199;
+}
+
+.detail__halo {
+  position: absolute;
+  inset: 20% -6% 6% 38%;
+  background: var(--color-orange);
+  opacity: 0.16;
+  clip-path: polygon(20% 0, 100% 0, 80% 100%, 0 100%);
+}
+
+.detail__jacket img {
+  position: relative;
+  object-fit: contain;
+}
+
+.detail__sneakers,
+.detail__acc {
+  overflow: clip;
+  background: var(--color-ink);
+}
+
+.detail__sneakers {
+  aspect-ratio: 3 / 2;
+}
+
+.detail__acc {
+  aspect-ratio: 4 / 3;
+}
+
+.detail__sneakers img,
+.detail__acc img {
+  object-fit: cover;
+}
+
+.detail__tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 8px 14px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.detail__tag--light {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+.detail__sneakers .detail__tag {
+  left: auto;
+  right: 0;
+}
+
+/* Tablet: jaqueta centralizada e painéis lado a lado, sem ocupar a largura toda. */
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .detail__canvas {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .detail__copy,
+  .detail__quote,
+  .detail__jacket {
+    grid-column: 1 / -1;
+  }
+
+  .detail__jacket {
+    width: min(100%, 540px);
+    justify-self: center;
+  }
+
+  .detail__acc {
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Desktop: palco com altura de uma tela (menos o cabeçalho). Serve à cena fixada e,
+   sem animação, como composição estática (tela baixa, movimento reduzido). */
+@media (min-width: 1024px) {
+  .detail {
+    padding-block: 0;
+  }
+
+  .detail__stage {
+    position: relative;
+    height: clamp(600px, calc(100svh - var(--header-h)), 820px);
+  }
+
+  .detail__canvas {
+    position: absolute;
+    inset: 32px var(--gutter);
+    display: block;
+  }
+
+  .detail__copy {
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 38%;
+  }
+
+  .detail__jacket {
+    position: absolute;
+    z-index: 2;
+    left: 27%;
+    top: 12%;
+    width: 40%;
+    height: 82%;
+    aspect-ratio: auto;
+  }
+
+  .detail__jacket .detail__tag {
+    left: 10%;
+    bottom: 8%;
+  }
+
+  /* Corte diagonal na imagem; o contêiner fica livre para a máscara do GSAP. */
+  .detail__sneakers {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    top: 0;
+    width: 32%;
+    background: transparent;
+  }
+
+  /* Painel grafite com recorte diagonal aplicado na própria imagem. */
+  .detail__sneakers img {
+    background: var(--color-ink);
+    clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .detail__acc {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 0;
+    width: 29%;
+  }
+
+  .detail__quote {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+    bottom: 0;
+    width: 30%;
+    max-width: none;
+    padding-top: 16px;
+    border-top: 3px solid var(--color-ink);
+  }
+}

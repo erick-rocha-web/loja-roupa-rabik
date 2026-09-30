@@ -1,0 +1,317 @@
+.lookbook {
+  padding-block: clamp(72px, 10vw, 136px) clamp(64px, 8vw, 112px);
+  background: var(--color-paper);
+}
+
+.lookbook__head {
+  display: grid;
+  gap: 16px;
+  max-width: 760px;
+}
+
+.lookbook__kicker {
+  color: var(--color-orange-text);
+}
+
+.lookbook__filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-block: 36px 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: var(--radius);
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color var(--t-micro) var(--ease-out),
+    color var(--t-micro) var(--ease-out);
+}
+
+.chip:hover {
+  background: var(--color-paper-2);
+}
+
+.chip[aria-pressed="true"] {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.lookbook__count {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/* Grade assimétrica: um card dominante e dois complementares. */
+.lookbook__grid {
+  display: grid;
+  gap: 20px;
+}
+
+/* Altura da ilustração definida explicitamente por breakpoint (não derivada da largura),
+   para o card mostrar referência, nome e controles sem crescer além da tela. */
+.look-card {
+  --media-h: 300px;
+  position: relative;
+  display: grid;
+  align-content: start;
+  background: var(--color-paper);
+  border: 1.5px solid var(--color-ink);
+  border-radius: var(--radius);
+  /* `translate` (propriedade independente) evita disputar `transform` com a entrada do GSAP. */
+  transition:
+    translate var(--t-micro) var(--ease-out),
+    box-shadow var(--t-micro) var(--ease-out);
+}
+
+.look-card:hover,
+.look-card:focus-within {
+  translate: 0 -3px;
+  box-shadow: 6px 6px 0 var(--family, var(--color-orange));
+}
+
+.family-orange {
+  --family: var(--color-orange);
+}
+
+.family-blue {
+  --family: var(--color-blue);
+}
+
+.family-olive {
+  --family: var(--color-olive);
+}
+
+.look-card__media {
+  position: relative;
+  height: var(--media-h);
+  /* Recorta apenas o grafismo diagonal; a ilustração cabe inteira (contain). */
+  overflow: clip;
+  background: var(--color-paper-2);
+  border-radius: 2px 2px 0 0;
+}
+
+.look-card__shape {
+  position: absolute;
+  inset: 16% 16% 0 34%;
+  background: var(--family);
+  clip-path: polygon(34% 0, 100% 0, 66% 100%, 0 100%);
+}
+
+.look-card__media img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 12px;
+  object-fit: contain;
+  object-position: 50% 100%;
+}
+
+.look-card__body {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  padding: 16px 18px 18px;
+  border-top: 1.5px solid var(--color-ink);
+}
+
+.look-card__tags {
+  color: var(--color-muted);
+}
+
+.look-card__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(28px, 2.4vw, 38px);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.look-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.save-btn svg {
+  margin-left: -2px;
+}
+
+/* Mobile: dominante em coluna; complementares horizontais. */
+.look-card--dominant {
+  --media-h: 320px;
+}
+
+.look-card--side {
+  --media-h: auto;
+  grid-template-columns: minmax(120px, 40%) 1fr;
+}
+
+.look-card--side .look-card__media {
+  min-height: 230px;
+  border-radius: 2px 0 0 2px;
+}
+
+.look-card--side .look-card__body {
+  border-top: 0;
+  border-left: 1.5px solid var(--color-ink);
+  padding: 14px;
+}
+
+.look-card--side .look-card__title {
+  font-size: clamp(24px, 2vw, 30px);
+}
+
+.look-card--side .look-card__actions .btn {
+  width: 100%;
+}
+
+@media (min-width: 720px) and (max-width: 1023.98px) {
+  .look-card--dominant {
+    --media-h: 340px;
+    grid-template-columns: 1.1fr 1fr;
+  }
+
+  .look-card--dominant .look-card__media {
+    border-radius: 2px 0 0 2px;
+  }
+
+  .look-card--dominant .look-card__body {
+    border-top: 0;
+    border-left: 1.5px solid var(--color-ink);
+    align-content: end;
+    padding: 24px;
+  }
+
+  .lookbook__grid--3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lookbook__grid--3 .look-card--dominant {
+    grid-column: 1 / -1;
+  }
+
+  .look-card--side {
+    --media-h: 280px;
+    grid-template-columns: 1fr;
+  }
+
+  .look-card--side .look-card__media {
+    min-height: 0;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .look-card--side .look-card__body {
+    border-left: 0;
+    border-top: 1.5px solid var(--color-ink);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Dominante (6 colunas) + dois complementares verticais (3 + 3), o último levemente deslocado. */
+  .lookbook__grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    align-items: start;
+    gap: 24px;
+  }
+
+  .look-card--dominant {
+    --media-h: clamp(300px, 40vh, 360px);
+    grid-column: 1 / span 6;
+  }
+
+  .look-card--dominant .look-card__body {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 8px 20px;
+    padding: 18px 22px 20px;
+  }
+
+  .look-card--dominant .look-card__title {
+    font-size: clamp(36px, 3vw, 44px);
+  }
+
+  .look-card--dominant .look-card__actions {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    flex-direction: column;
+    align-self: end;
+  }
+
+  .look-card--side {
+    --media-h: clamp(260px, 34vh, 300px);
+    grid-column: span 3;
+    grid-template-columns: 1fr;
+  }
+
+  .look-card--side:last-child:not(:nth-child(2)) {
+    margin-top: 48px;
+  }
+
+  .look-card--side .look-card__media {
+    min-height: 0;
+    border-radius: 2px 2px 0 0;
+  }
+
+  .look-card--side .look-card__body {
+    border-left: 0;
+    border-top: 1.5px solid var(--color-ink);
+    padding: 14px 16px 16px;
+  }
+
+  /* Um resultado: composição horizontal ampla. */
+  .lookbook__grid--1 .look-card--dominant {
+    grid-column: 1 / span 12;
+    grid-template-columns: 7fr 5fr;
+  }
+
+  .lookbook__grid--1 .look-card--dominant .look-card__media {
+    border-radius: 2px 0 0 2px;
+  }
+
+  .lookbook__grid--1 .look-card--dominant .look-card__body {
+    grid-template-columns: 1fr;
+    border-top: 0;
+    border-left: 1.5px solid var(--color-ink);
+    align-content: end;
+    padding: 32px;
+  }
+
+  .lookbook__grid--1 .look-card--dominant .look-card__actions {
+    grid-column: auto;
+    grid-row: auto;
+    flex-direction: row;
+  }
+
+  /* Dois resultados: dominante 7 + complementar 5 com imagem mais larga. */
+  .lookbook__grid--2 .look-card--dominant {
+    grid-column: 1 / span 7;
+  }
+
+  .lookbook__grid--2 .look-card--side {
+    --media-h: clamp(300px, 40vh, 360px);
+    grid-column: 8 / span 5;
+    margin-top: 48px;
+  }
+
+  .lookbook__grid--2 .look-card--side .look-card__actions .btn {
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .look-card:hover,
+  .look-card:focus-within {
+    translate: none;
+  }
+}
